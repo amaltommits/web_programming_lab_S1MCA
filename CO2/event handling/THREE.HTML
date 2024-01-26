@@ -1,0 +1,92 @@
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Image and Text Hover</title>
+
+<style>
+
+#image-container {
+
+position: relative;
+
+width: 300px;
+
+height: 160px;
+
+background-color: #ccc;
+
+text-align: center;
+
+}
+#image-container img {
+
+    width: 100%;
+    
+    height: auto; }
+    
+    #hidden-content {
+    
+    position: absolute;
+    
+    top: 0;
+    
+    left: 0;
+    
+    width: 100%;
+    
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+    
+    color: white;
+    
+    text-align: center;
+    
+    display: none; }
+    
+    </style>
+</head>
+
+<body bgcolor="orange"><center>
+
+<div id="image-container">
+
+<img src="https://carwow-uk-wp-3.imgix.net/18015-MC20BluInfinito-scaled-e1666008987698.jpg" alt="Image 1">
+
+<p id="image-text" style="color: white; font-size: xx-large; font-style: italic;;">this is a car</p>
+
+<div id="hidden-content">
+
+<img src="https://bd.gaadicdn.com/processedimages/indian/scout-bobber/640X309/scout-bobber62e8a54b299f5.jpg" alt="Image 2">
+
+</div>
+
+</div></center>
+<script>
+
+    const imageContainer = document.getElementById('image-container');
+    
+    const hiddenContent = document.getElementById('hidden-content');
+    
+    const imageText = document.getElementById('image-text');
+    
+    imageContainer.addEventListener('mouseover', () => {
+    
+    hiddenContent.style.display = 'block';
+    
+    imageText.textContent = 'now it is bike!!'; });
+    
+    imageContainer.addEventListener('mouseout', () => {
+    
+    hiddenContent.style.display = 'none';
+    
+    imageText.textContent = 'this is a car'; });
+    
+    </script>
+    
+    </body>
+    
+    </html>

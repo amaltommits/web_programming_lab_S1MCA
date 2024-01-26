@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> String and Math functions </title>
+    <style>
+   
+    </style>
+</head>
+
+<body style="background-color:  rgb(39, 217, 230);"> 
+  <div>
+ <center><h2 style="background-color: rgb(196, 212, 255); font-size: xx-large; font-style: italic;"> Math Functions </h2></center> 
+  <table>
+      <tbody>
+          <tr>
+              <th > Enter a Number </th>
+              <td> <input type="text" id="input_num"></td>
+          </tr>
+          <tr>
+              <th> Power term </th>
+              <td> <input type="text" id="input_pow"></td>
+          </tr>
+      </tbody>
+  </table>
+
+
+  <input type="button" value="Generate" class="selector" onclick="math_func()">
+
+  <br><br>
+  <ul id="output_math"> </ul>
+</div>
+<script>
+function math_func() {
+  let input = document.getElementById('input_num').value;
+  let power = document.getElementById('input_pow').value;
+
+  let li_O = '<li>';
+  let li_C = '</li>';
+  let list_items;
+  list_items = li_O + 'Value of PI  : ' + Math.PI + li_C;
+  list_items += li_O + 'Round of  '+input+' is : ' + Math.round(input) + li_C;
+  list_items += li_O + ' '+input+' raise to '+power+' is : ' + Math.pow(input,power) + li_C;
+  list_items += li_O + 'Square root of  '+input+' is : ' + Math.sqrt(input) + li_C;
+  list_items += li_O + 'Absolute value  of  '+input+' is : ' + Math.abs(input) + li_C;
+  list_items += li_O + 'Ceil value  of  '+input+' is : ' + Math.ceil(input) + li_C;
+  list_items += li_O + 'Floor value  of  '+input+' is : ' + Math.floor(input) + li_C;
+  list_items += li_O + 'sign value of'+input+' is : ' + Math.sign(input) + li_C;
+  list_items += li_O + 'log value of '+input+' is : ' + Math.log(input) + li_C;
+  list_items += li_O + 'number without fractional part of '+input+' is : ' + Math.trunc(input) + li_C;
+  list_items += li_O + 'A Random number is : ' + Math.random() + li_C;
+
+  document.getElementById('output_math').innerHTML = (list_items);
+}
+</script>
+</body>
+
+</html>

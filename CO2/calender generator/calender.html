@@ -1,0 +1,90 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calender</title>
+   
+</head>
+
+<body style="background-color: rgb(157, 108, 202);"><CENTER>
+    <div class="selection">
+        <table class="tabselection" cellspacing="10">
+            <tbody><h2 style="color: white;">CALENDAR </h2>
+                <tr class="selrow">
+                    <td class="selcol"><H3 style="color: white;">ENTER THE YEAR</H3><input id="year_get" type="number" placeholder="year"> </td>
+                    <td class="selcol"><H3 style="color: white;">ENTER THE MONTH</H3><input id="month_get" type="number" placeholder="month"> </td>
+                </tr>
+                <tr class="selrow">
+                    <td  colspan="2" class="selcol"><input onclick="generate()" type="button" id="subtn" value="Generate Calender"> </td>
+                </tr>
+                <tr class="selrow">
+                    <td  colspan="2" class="selcol"><input type="reset" value="reset" id="resetbtn" onclick="location.reload();"> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="content"> </div></CENTER>
+</body>
+<script>
+    function generate() {
+        var year_get = document.getElementById("year_get").value;
+        var month_get = document.getElementById("month_get").value;
+        month_get=month_get-1;
+        if (month_get==0)
+           var month="january"; 
+        else if (month_get==1)
+            var month="february";
+        else if (month_get==2)
+            var month="march";
+        else if (month_get==3)
+            var month="April";
+        else if (month_get==4)
+            var month="may";
+        else if (month_get==5)
+            var month="june";
+        else if (month_get==6)
+            var month="july";
+        else if (month_get==7)
+            var month="August";
+        else if (month_get==8)
+            var month="september";
+        else if (month_get==9)
+            var month="october";
+        else if (month_get==10)
+            var month="november";
+        else if(month_get==11)
+            var month="December";
+        var init_content = "<table BORDER=1 width=600px height=300px  id='calender'><tr><th colspan='4'>"+year_get+"</th><th colspan='3'>"+month+"</th></tr><tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr><tr>"
+        
+
+        var date = new Date(year_get,month_get);
+        var day = date.getDay();
+        console.log("day");
+        console.log(day);
+        for (var i = 0; i < day; i++) {
+            init_content += "<td></td>";
+        }
+        while (date.getMonth() == month_get) {
+            init_content += "<td>" + date.getDate() + "</td>";
+            if (date.getDay() % 7 == 6) {
+                init_content += "</tr><tr>";
+            }
+            date.setDate(date.getDate() + 1);
+        }
+        
+        while(date.getDay() % 7 != 6 && date.getDay() % 7 != 0){
+            init_content += "<td></td>";
+            date.setDate(date.getDate() + 1);
+        }
+        
+        if(date.getDay() % 7 > 0){
+            init_content += "<td></td></tr>";
+        }
+
+        init_content += "</table>"
+        document.getElementById("content").innerHTML = init_content;
+    }
+</script>
+
+</html>

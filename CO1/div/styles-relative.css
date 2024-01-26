@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+.box {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: rgb(204, 163, 163);
+  color: rgb(91, 16, 16);
+}
+#two {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background: rgb(56, 56, 64);
+}
+#three {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background: rgb(181, 60, 121);
+}
+#four {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background: rgb(77, 83, 5);
+}

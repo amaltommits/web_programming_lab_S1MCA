@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Exam</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 100px;
+      background-color: #f4f4f4;
+    }
+
+    #quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      margin-bottom: 10px;
+      font-size: 18px;
+      
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .question{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: xx-large;
+    }
+    #submit-button
+    {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #af4c4c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    #result-container {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="quiz-container">
+  <div id="question-container" class="question"></div>
+  <div id="answer-buttons" class="btn-container"></div>
+  <button id="next-button" class="btn" onclick="nextQuestion()">Next</button>
+  <button id="submit-button" class="btn" onclick="submitAnswers()">Submit</button>
+  <div id="result-container"></div>
+</div>
+
+<script>
+  
+    const questions = [
+      {
+        question: "WHAT IS THE CAPITAL OF KERALA?",
+        answers: [
+          { text: "KOCHI", correct: false },
+          { text: "THIRUVANANTHAPURAM", correct: true },
+          { text: "KOTTAYAM", correct: false },
+          { text: "ALAPPUZHA", correct: false }
+        ]
+      },
+      {
+        question: "WHO IS THE CHEIF MINISTER OF KERALA?",
+        answers: [
+          { text: "PINARAYI VIJAYAN", correct: true },
+          { text: "OMMEN CHNADI", correct: false },
+          { text: "VD SATHESHAN", correct: false },
+          { text: "RAMESH CHENNITHALA", correct: false }
+        ]
+      },
+      {
+        question: "SMALLEST CELL IN HUMAN BODY?",
+        answers: [
+          { text: "RBC", correct: false },
+          { text: "TESTOSTERONE", correct: true },
+          { text: "PLATELETS", correct: false },
+          { text: "WBC", correct: false }
+        ]
+      },
+      {
+        question: "WHERE IS BEKAL FORT LOCATED?",
+        answers: [
+          { text: "ERNAKULAM", correct: false },
+          { text: "KOTTAYAM", correct: false},
+          { text: "ALAPPUZHA", correct: false },
+          { text: "KASARGOD", correct: true }
+        ]
+      },
+      {
+      question: "RICE BOWL OF KERALA?",
+        answers: [
+          { text: "KOLLAM", correct: false },
+          { text: "ALAPPUZHA", correct: false},
+          { text: "MALAPPURAM", correct: false },
+          { text: "PLAKKAD", correct: true }
+      ]},
+    ];
+  
+    let currentQuestionIndex = 0;
+    let score = 0;
+  
+    const questionContainer = document.getElementById("question-container");
+    const answerButtonsContainer = document.getElementById("answer-buttons");
+    const nextButton = document.getElementById("next-button");
+    const submitButton = document.getElementById("submit-button");
+    const resultContainer = document.getElementById("result-container");
+  
+    function startQuiz() {
+      nextButton.style.display = "none";
+      submitButton.style.display = "none";
+      resultContainer.innerHTML = "";
+      score = 0;
+      currentQuestionIndex = 0;
+      showQuestion(questions[currentQuestionIndex]);
+    }
+  
+    function showQuestion(question) {
+      questionContainer.innerText = question.question;
+      answerButtonsContainer.innerHTML = "";
+      question.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn");
+        button.addEventListener("click", () => selectAnswer(answer));
+        answerButtonsContainer.appendChild(button);
+      });
+    }
+  
+    function selectAnswer(answer) {
+      if (answer.correct) {
+        score++;
+      }
+  
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(questions[currentQuestionIndex]);
+      } else {
+        nextButton.style.display = "none";
+        submitButton.style.display = "block";
+      }
+    }
+  
+    function nextQuestion() {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(questions[currentQuestionIndex]);
+      }
+  
+      if (currentQuestionIndex === questions.length - 1) {
+        nextButton.style.display = "none";
+        submitButton.style.display = "block";
+      }
+    }
+  
+    function submitAnswers() {
+      resultContainer.innerHTML = `Your score:${score}/${questions.length}<br>
+      the correct ansers are<br>
+      1.THIRUVANANTHAPURAM<BR>
+      2.PINARAYI VIJAYAN<BR>
+      3.TESTOSTRONE<BR>
+
+      4.KASARGOD<BR>
+      5.PALAKKAD`;
+    }
+  
+    
+    startQuiz();
+  </script>
+  
+
+
+</body>
+</html>
